@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %} Home Page {% endblock %}
+{% block content %}
+<h1>Course Planner</h1>
+<form action="/add" method="post">
+    <div>
+        <label for="title">Course Title</label>
+        <input type="text" name="title" placeholder="Enter Course...">
+        <button type="submit">Add</button>
+    </div>
+</form>
+{% for Course in course_list %}
+    <p> {{Course.id }} | {{Course.title}}</p>
+        {% if Course.complete == False %}
+        <span>Not Completed</span>
+        {% else %}
+        <span>Completed</span>
+        {% endif %}
+
+    <a href="/update/{{ Course.id }}">Update</a>
+    <a href="/update/{{ Course.id }}">Delete</a>
+{% endfor %}
+{% endblock %}
